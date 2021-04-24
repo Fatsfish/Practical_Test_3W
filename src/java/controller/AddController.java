@@ -45,16 +45,14 @@ public class AddController extends HttpServlet {
             String CT = request.getParameter("CookingTime");
             String CD = request.getParameter("CreateDate");
             FoodDAO dao = new FoodDAO();
-            if (DBUtils.checkFormat(ID)) {
-                FoodDTO dto = new FoodDTO(ID, Name, Des, Price, CT, true, CD);
-                if (dao.add(dto)) {
-                    url = SUCCESS;
-                }
+            FoodDTO dto = new FoodDTO(ID, Name, Des, Price, CT, true, CD);
+            if (dao.add(dto)) {
+                url = SUCCESS;
             }
         } catch (Exception e) {
 
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

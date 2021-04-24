@@ -61,7 +61,7 @@ public class FoodDAO {
             if (conn != null) {
                 String sql = "select ID, Name, Description, Price, CookingTime, isDelete, CreateDate from tblFoods where Name=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, search);
+                stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
                 if (rs.next()) {
                     String ID = rs.getString("ID");
